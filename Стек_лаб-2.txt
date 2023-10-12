@@ -1,0 +1,77 @@
+
+interface SocialNetwork {
+    method login(credentials): bool
+    method post(message): bool
+    method logout(): void
+}
+
+class Facebook implements SocialNetwork {
+    method login(credentials): bool {
+       
+    }
+    
+    method post(message): bool {
+        
+    }
+    
+    method logout(): void {
+        
+    }
+}
+
+
+class LinkedIn implements SocialNetwork {
+    method login(credentials): bool {
+        
+    }
+    
+    method post(message): bool {
+        
+    }
+    
+    method logout(): void {
+        
+    }
+}
+
+
+class SocialNetworkFactory {
+    method createSocialNetwork(networkType): SocialNetwork {
+        if networkType == "Facebook":
+            return new Facebook()
+        elseif networkType == "LinkedIn":
+            return new LinkedIn()
+        else:
+            throw new Exception("Непідтримувана соціальна мережа")
+    }
+}
+
+
+function main() {
+    networkType = input("Виберіть соціальну мережу (Facebook або LinkedIn)")
+    
+    
+    factory = new SocialNetworkFactory()
+    
+    
+    socialNetwork = factory.createSocialNetwork(networkType)
+    
+    
+    socialNetwork.login(credentials)
+    
+    
+    message = input("Введіть повідомлення для публікації")
+    socialNetwork.post(message)
+    
+    
+    socialNetwork.logout()
+}
+
+1. Інтерфейс SocialNetwork визначає три методи: login, post і logout.
+2.Клас Facebook і клас LinkedIn реалізують цей інтерфейс і повинні надати
+ конкретну реалізацію цих методів для кожної соціальної мережі.
+3.Клас SocialNetworkFactory має метод createSocialNetwork, який повертає 
+об'єкт соціальної мережі в залежності від типу.
+4.У головному методі main ми визначаємо тип соціальної мережі, створюємо фабрику 
+і використовуємо фабричний метод для створення об'єкту соціальної мережі. 
+Далі виконуємо логін, публікацію повідомлення і вихід з мережі.
