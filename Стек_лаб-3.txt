@@ -1,0 +1,90 @@
+
+interface QueryBuilder {
+    method select(fields): void
+    method where(condition): void
+    method limit(limit): void
+    method getSQL(): string
+}
+
+L
+class PostgreSQLQueryBuilder implements QueryBuilder {
+    private query: string = ""
+    
+    method select(fields): void {
+        this.query += "SELECT " + fields.join(", ") + " FROM table "
+    }
+    
+    method where(condition): void {
+        this.query += "WHERE " + condition + " "
+    }
+    
+    method limit(limit): void {
+        this.query += "LIMIT " + limit + " "
+    }
+    
+    method getSQL(): string {
+        return this.query
+    }
+}
+
+
+class MySQLQueryBuilder implements QueryBuilder {
+    private query: string = ""
+    
+    method select(fields): void {
+        this.query += "SELECT " + fields.join(", ") + " FROM table "
+    }
+    
+    method where(condition): void {
+        this.query += "WHERE " + condition + " "
+    }
+    
+    method limit(limit): void {
+        this.query += "LIMIT " + limit + " "
+    }
+    
+    method getSQL(): string {
+        return this.query
+    }
+}
+
+
+class QueryDirector {
+    private builder: QueryBuilder
+    
+    constructor(builder: QueryBuilder) {
+        this.builder = builder
+    }
+    
+    method buildComplexQuery(): void {
+        this.builder.select(["field1", "field2"])
+        this.builder.where("condition1")
+        this.builder.limit(10)
+    }
+}
+
+
+function main() {
+    
+    postgresBuilder = new PostgreSQLQueryBuilder()
+    mysqlBuilder = new MySQLQueryBuilder()
+    
+    director = new QueryDirector(postgresBuilder)
+    
+    director.buildComplexQuery()
+    
+    sql = postgresBuilder.getSQL()
+    
+    executeSQL(sql)
+    
+    director = new QueryDirector(mysqlBuilder)
+    director.buildComplexQuery()
+    sql = mysqlBuilder.getSQL()
+    executeSQL(sql)
+}
+
+У цьому псевдокоді визначений інтерфейс QueryBuilder який має методи для визначення SELECT WHERE і LIMIT 
+а також метод getSQL() який повертає готовий SQL-запит.
+Потім були створены конкретні будувельники для PostgreSQL і MySQL які реалізують цей інтерфейс. 
+
+ 
