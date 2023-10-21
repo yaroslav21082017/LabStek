@@ -1,0 +1,52 @@
+interface DeliveryCostStrategy {
+    method calculateCost(order: Order): float
+}
+
+class PickupDeliveryCostStrategy implements DeliveryCostStrategy {
+    method calculateCost(order: Order): float {
+    }
+}
+
+class ExternalDeliveryCostStrategy implements DeliveryCostStrategy {
+    method calculateCost(order: Order): float {
+    }
+}
+
+class OwnDeliveryCostStrategy implements DeliveryCostStrategy {
+    method calculateCost(order: Order): float {
+    }
+}
+
+class Order {
+ 
+}
+
+class DeliveryCostCalculator {
+    private deliveryCostStrategy: DeliveryCostStrategy
+
+    constructor(strategy: DeliveryCostStrategy) {
+        this.deliveryCostStrategy = strategy
+    }
+
+    method setDeliveryCostStrategy(strategy: DeliveryCostStrategy) {
+        this.deliveryCostStrategy = strategy
+    }
+
+    method calculateDeliveryCost(order: Order): float {
+        return this.deliveryCostStrategy.calculateCost(order)
+    }
+}
+
+function main() {
+    const order = new Order()
+    const calculator = new DeliveryCostCalculator(new PickupDeliveryCostStrategy())
+
+    calculator.setDeliveryCostStrategy(new ExternalDeliveryCostStrategy())
+    const externalDeliveryCost = calculator.calculateDeliveryCost(order)
+
+    calculator.setDeliveryCostStrategy(new OwnDeliveryCostStrategy())
+    const ownDeliveryCost = calculator.calculateDeliveryCost(order)
+}
+
+Клас DeliveryCostCalculator використовує вибрану стратегію для розрахунку вартості доставки. 
+Клієнт може змінювати стратегію в будь-який момент не змінюючи коду розрахунку вартості доставки.
