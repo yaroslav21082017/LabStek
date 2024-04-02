@@ -1,0 +1,52 @@
+class UserType:
+  ENGINEER = 1
+  MANAGER = 2
+
+class User:
+  
+Цей клас представляє користувача.
+  
+
+  def __init__(self, name: str, age: int, user_type: UserType, phone: str, phone_code: str) -> None:
+    
+Ініціалізація нового користувача.
+
+    Args:
+        name: Ім'я користувача.
+        age: Вік користувача.
+        user_type: Тип користувача (ENGINEER або MANAGER).
+        phone: Номер телефону користувача.
+        phone_code: Код країни для телефону.
+    
+    self.name = name
+    self.age = age
+    self.user_type = user_type
+    self.phone = phone
+    self.phone_code = phone_code
+
+  def get_user_type_string(self) -> str:
+    
+Отримує текстове представлення типу користувача.
+
+    Returns:
+Текстове представлення типу користувача ("ENGINEER" або "MANAGER").
+    
+    if self.user_type == UserType.ENGINEER:
+      return "Engineer"
+    elif self.user_type == UserType.MANAGER:
+      return "Manager"
+    else:
+      raise ValueError("Невідомий тип користувача")
+
+  def print_details(self) -> None:
+    
+Виводить інформацію про користувача.
+    
+    print("Name:", self.name)
+    print("Age:", self.age)
+    print("Type:", self.get_user_type_string())
+    print("Phone:", self.phone_code + self.phone)
+
+Приклад використання класу
+user = User("John", 25, UserType.ENGINEER, "9379992", "050")
+user.print_details()

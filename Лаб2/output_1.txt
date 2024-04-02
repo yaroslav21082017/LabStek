@@ -1,0 +1,35 @@
+def calculate_score(user_data):
+  
+    Args:
+        user_data: Іменований кортеж з даними користувача (name, age, gender, height, weight, *scores).
+
+    Returns:
+        None.
+   
+    name, age, gender, height, weight, *scores = user_data
+
+    SCORES_WEIGHTS = {
+        "score1": 0.2,
+        "score2": 0.2,
+        "score3": 0.15,
+        "score4": 0.15,
+        "score5": 0.3,
+    }
+
+    ADULT_AGE = 18
+
+    total_score = sum(score * SCORES_WEIGHTS.get(score_name, 0) for score_name, score in zip(scores, SCORES_WEIGHTS))
+
+    is_adult = True if age >= ADULT_AGE else False
+
+    print("Name:", name)
+    print("Age:", age)
+    print("Gender:", gender)
+    print("Height:", height)
+    print("Weight:", weight)
+    print("Total Score:", total_score)
+    print("Adult:", is_adult)
+
+
+Приклад виклику функції
+calculate_score(("John", 25, "Male", 175, 70, 85, 90, 75, 88, 92))
