@@ -1,0 +1,41 @@
+class Shape:
+    def __init__(self, shape_type):
+        self.shape_type = shape_type
+    def get_area(self):
+        raise NotImplementedError("Метод get_area() має бути перевизначений у нащадках")
+    def get_info(self):
+        raise NotImplementedError("Метод get_info() має бути перевизначений у нащадках")
+class Circle(Shape):
+    def get_area(self):
+        radius = float(input("Введіть радіус кола: "))
+        return 3.14 * radius * radius
+    def get_info(self):
+        return f"Тип фігури: {self.shape_type}\nПлоща: {self.get_area()}"
+class Rectangle(Shape):
+    def get_area(self):
+        length = float(input("Введіть довжину прямокутника: "))
+        width = float(input("Введіть ширину прямокутника: "))
+        return length * width
+    def get_info(self):
+        return f"Тип фігури: {self.shape_type}\nПлоща: {self.get_area()}"
+class Triangle(Shape):
+    def get_area(self):
+        base = float(input("Введіть основу трикутника: "))
+        height = float(input("Введіть висоту трикутника: "))
+        return 0.5 * base * height
+    def get_info(self):
+        return f"Тип фігури: {self.shape_type}\nПлоща: {self.get_area()}"
+def calculate_area(shape_type):
+    if shape_type == "коло":
+        shape = Circle(shape_type)
+    elif shape_type == "прямокутник":
+        shape = Rectangle(shape_type)
+    elif shape_type == "трикутник":
+        shape = Triangle(shape_type)
+    else:
+        print("Невідомий тип фігури")
+        return
+    area = shape.get_area()
+    print("Площа:", area)
+shape_type = input("Введіть тип фігури (коло, прямокутник, трикутник): ")
+calculate_area(shape_type)

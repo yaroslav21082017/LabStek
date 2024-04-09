@@ -1,0 +1,49 @@
+class ProductInfo:
+    def __init__(self, name, price, type):
+        self.name = name
+        self.price = price
+        self.type = type
+
+
+class ProductSearch:
+    def search_product(self, query):
+        # Пошук товару за запитом
+        pass
+
+
+class ProductDisplay:
+    def display_product(self, product_info):
+        # Відображення інформації про товар
+        pass
+
+
+class ProductOrder:
+    def order_product(self, product_info, quantity):
+        # Замовлення товару
+        pass
+
+
+class ProductPage:
+    def __init__(self, product_info):
+        self._product_info = product_info
+        self._search = ProductSearch()
+        self._display = ProductDisplay()
+        self._order = ProductOrder()
+
+    def search(self, query):
+        return self._search.search_product(query)
+
+    def display(self):
+        self._display.display_product(self._product_info)
+
+    def order(self, quantity):
+        self._order.order_product(self._product_info, quantity)
+
+
+# Приклад використання
+product_info = ProductInfo("Товар", 100, "Тип")
+product_page = ProductPage(product_info)
+
+product_page.search("Запит")
+product_page.display()
+product_page.order(1)

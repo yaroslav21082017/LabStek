@@ -1,0 +1,23 @@
+class Animal:
+    def __init__(self):
+        self._speaker = Speaker()
+        self._mover = Mover()
+    def speak(self):
+        self._speaker.speak()
+    def move(self):
+        self._mover.move()
+class Speaker:
+    def speak(self):
+        raise NotImplementedError("Метод speak() має бути перевизначений")
+class Mover:
+    def move(self):
+        raise NotImplementedError("Метод move() має бути перевизначений")
+class Dog(Animal):
+    def __init__(self):
+        super().__init__()
+
+    def speak(self):
+        print("Гав!")
+
+    def move(self):
+        print("Біжить")
